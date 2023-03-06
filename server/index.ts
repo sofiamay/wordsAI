@@ -3,14 +3,9 @@ import http from 'http';
 import express, { Express } from 'express';
 import { Request, Response } from 'express';
 import morgan from 'morgan';
-import routes from './routes/termListing';
+import termListingroutes from './routes/termListing';
 
 const router: Express = express();
-
-/** Load index page **/
-router.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
 
 /** Logging */
 router.use(morgan('dev'));
@@ -34,7 +29,11 @@ router.use((req, res, next) => {
 });
 
 /** Routes */
-router.use('/', routes);
+router.get('/', (req: Request, res: Response) => {
+  res.send('Express + TypeScript Server');
+});
+
+router.use('/', termListingroutes);
 
 /** Error handling */
 router.use((req, res, next) => {
